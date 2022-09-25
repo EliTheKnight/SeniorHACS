@@ -1,5 +1,6 @@
 import pygame
 import random
+import time
 from pygame.locals import (
     RLEACCEL,
     K_UP,
@@ -111,7 +112,7 @@ running = True
 #
 # move_up_sound = pygame.mixer.Sound("Rising_putter.ogg")
 # move_down_sound = pygame.mixer.Sound("Falling_putter.ogg")
-# collision_sound = pygame.mixer.Sound("Collision.ogg")
+collision_sound = pygame.mixer.Sound("minecraft_tnt_dMsuqNt.mp3")
 
 
 while running:
@@ -145,7 +146,8 @@ while running:
         player.kill()
         # move_down_sound.stop()
         # move_up_sound.stop()
-        # collision_sound.play()
+        collision_sound.play()
+        time.sleep(5)
         running = False
 
     pygame.display.flip()
