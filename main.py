@@ -26,8 +26,10 @@ class Player(pygame.sprite.Sprite):
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
             self.rect.move_ip(0, -5)
+            # move_up_sound.play()
         if pressed_keys[K_DOWN]:
             self.rect.move_ip(0, 5)
+            # move_down_sound.play()
         if pressed_keys[K_LEFT]:
             self.rect.move_ip(-5, 0)
         if pressed_keys[K_RIGHT]:
@@ -81,6 +83,7 @@ class Cloud(pygame.sprite.Sprite):
         if self.rect.right < 0:
             self.kill()
 
+pygame.mixer.init()
 
 pygame.init()
 
@@ -102,6 +105,14 @@ all_sprites.add(player)
 clock = pygame.time.Clock()
 
 running = True
+
+# pygame.mixer.music.load("Apoxode_-_Electric_1.mp3")
+# pygame.mixer.music.play(loops=-1)
+#
+# move_up_sound = pygame.mixer.Sound("Rising_putter.ogg")
+# move_down_sound = pygame.mixer.Sound("Falling_putter.ogg")
+# collision_sound = pygame.mixer.Sound("Collision.ogg")
+
 
 while running:
 
@@ -132,10 +143,15 @@ while running:
 
     if pygame.sprite.spritecollideany(player, enemies):
         player.kill()
+        # move_down_sound.stop()
+        # move_up_sound.stop()
+        # collision_sound.play()
         running = False
 
     pygame.display.flip()
 
     clock.tick(45)
 
+# pygame.mixer.music.stop()
+# pygame.mixer.quit()
 pygame.quit()
